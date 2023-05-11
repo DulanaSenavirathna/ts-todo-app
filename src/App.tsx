@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import InputFeild from './components/InputFeild';
 
-function App() {
+const App: React.FC = () => {
+
+const [todo, setTodo] = useState<string>("")
+
+console.log(todo);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-         Hello There! We Deploy On GitHub Pages.
-        </p>
-         
-      </header>
+      <span className="heading">TypeSctipt ToDo App</span>
+      <InputFeild todo={todo} setTodo={setTodo}/>
     </div>
   );
 }
 
 export default App;
+ 
