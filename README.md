@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## WebSite Preview
+site is live at https://dulanasenavirathna.github.io/ts-todo-app/
+
 ## Available Scripts
 
 In the project directory, you can run:
