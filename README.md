@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## WebSite Preview
-site is live at https://dulanasenavirathna.github.io/ts-todo-app/
+site is hosted at https://dulanasenavirathna.github.io/ts-todo-app/
 
 ## Available Scripts
 

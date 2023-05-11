@@ -4,12 +4,15 @@ import "./styles.css";
 interface Props{
     todo: string;
     setTodo: React.Dispatch<React.SetStateAction<string>>;
+    handleAdd:(e: React.FormEvent) => void; 
+// handleAdd function not gonna return anything. so void added 
+// type added from handleAdd function in app.tsx
 }
 
-const InputFeild = ({todo,setTodo}: Props) => {
+const InputFeild = ({todo, setTodo, handleAdd}: Props) => {
   return (
     <div>
-      <form className="input">
+      <form className="input" onSubmit={handleAdd}>
         <input
           type="input"
           value={todo}
