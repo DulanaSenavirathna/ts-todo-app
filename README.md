@@ -1,9 +1,13 @@
+## Project Name
+Typescript Todo app
+
+## WebSite Preview
+ToDo App is hosted at https://dulanasenavirathna.github.io/ts-todo-app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## WebSite Preview
-ToDo App is hosted at https://dulanasenavirathna.github.io/ts-todo-app/
 
 ## Available Scripts
 
