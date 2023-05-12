@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/DulanaSenavirathna.github.io/ts-todo-app/static/css/main.073c9b0a.css",
-    "main.js": "/DulanaSenavirathna.github.io/ts-todo-app/static/js/main.c72f32fd.js",
+    "main.css": "/DulanaSenavirathna.github.io/ts-todo-app/static/css/main.2fcfd794.css",
+    "main.js": "/DulanaSenavirathna.github.io/ts-todo-app/static/js/main.9857ac69.js",
     "index.html": "/DulanaSenavirathna.github.io/ts-todo-app/index.html",
-    "main.073c9b0a.css.map": "/DulanaSenavirathna.github.io/ts-todo-app/static/css/main.073c9b0a.css.map",
-    "main.c72f32fd.js.map": "/DulanaSenavirathna.github.io/ts-todo-app/static/js/main.c72f32fd.js.map"
+    "main.2fcfd794.css.map": "/DulanaSenavirathna.github.io/ts-todo-app/static/css/main.2fcfd794.css.map",
+    "main.9857ac69.js.map": "/DulanaSenavirathna.github.io/ts-todo-app/static/js/main.9857ac69.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.c72f32fd.js"
+    "static/css/main.2fcfd794.css",
+    "static/js/main.9857ac69.js"
   ]
 }
