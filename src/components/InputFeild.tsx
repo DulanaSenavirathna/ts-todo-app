@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./styles.css";
 
 interface Props{
@@ -10,10 +10,18 @@ interface Props{
 }
 
 const InputFeild = ({todo, setTodo, handleAdd}: Props) => {
+  
+  // useRef hook for getting rid of blur after adding the input field
+  const inputRef = useRef<HTMLInputElement>(null);
+  
   return (
     <div>
-      <form className="input" onSubmit={handleAdd}>
+    <form className="input" onSubmit={(e)=>{
+      handleAdd(e)
+      inputRef.current?.blur();
+      }}>
         <input
+        ref={inputRef}
           type="input"
           value={todo}
           onChange={

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import InputFeild from "./components/InputFeild";
 import { ToDo } from "./model";
+import TodoList from "./components/TodoList";
 
 const App: React.FC = () => {
   // created useState for get todo from InputFeild
@@ -29,12 +30,17 @@ const App: React.FC = () => {
   };
 
   // console.log(todo);
-  console.log(todos);
+  // console.log(todos);
 
   return (
     <div className="App">
       <span className="heading">TypeScript ToDo App</span>
       <InputFeild todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+      {/* {todos.map((t) => (
+        <li>{t.todo}</li>
+      ))} */}
+
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 };

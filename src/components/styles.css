@@ -1,48 +1,132 @@
-.input{
-    display: flex;
-    width: 9 0%;
-    position: relative;
-    align-items: center;
-    margin-top: 10px;
+.input {
+  display: flex;
+  width: 9 0%;
+  position: relative;
+  align-items: center;
+  margin-top: 10px;
 }
 
-.inputBox{
+.inputBox {
+  width: 100%;
+  border-radius: 50px;
+  padding: 20px 30px;
+  font-size: 20px;
+  border: none;
+  transition: 0.2s;
+  box-shadow: inset 0 0 5px black;
+}
+
+.inputBox:focus {
+  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.212);
+  outline: none;
+}
+
+.inputSubmitBtn {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin: 12px;
+  border-radius: 50px;
+  right: 0px;
+  border: none;
+  font-size: 15px;
+  background-color: #3a506b;
+  color: #e7e6f7;
+  transition: 0.2s all;
+  box-shadow: 0 0 10px black;
+}
+
+.inputSubmitBtn:hover {
+  background-color: #647e9e;
+}
+
+.inputSubmitBtn:active {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px black;
+}
+
+/* todo card styling */
+
+.todos {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  flex-wrap: wrap;
+}
+
+.todosSingle {
+  display: flex;
+  width: 30%;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 15px;
+  background-color: #a8d0db;
+}
+
+.todosSingleText {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  font-size: 20px;
+}
+.todosSingleText:focus {
+  outline: none;
+}
+.icon {
+  margin-left: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .input {
+    width: 95%;
+  }
+  .todos {
+    width: 95%;
+  }
+  .todosSingle {
     width: 100%;
-    border-radius: 50px;
-    padding: 20px 30px;
-    font-size: 20px;
-    border: none;
-    transition: 0.2s;
-    box-shadow: inset 0 0 5px black;
+  }
+}
+@media (max-width: 1200px) {
+  .todosSingle {
+    width: 40%;
+  }
 }
 
-.inputBox:focus{
-    box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.212);
-    outline: none;
-
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
-.inputSubmitBtn{
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    margin: 12px;
-    border-radius: 50px;
-    right: 0px;
-    border: none;
-    font-size: 15px;
-    background-color: #3A506B;
-    color: #E7E6F7;
-    transition: 0.2s all;
-    box-shadow: 0 0 10px black;
+.popup h2 {
+  margin-top: 0;
 }
 
-.inputSubmitBtn:hover{
-    background-color: #647e9e;
+.popup p {
+  margin-bottom: 20px;
 }
-
-.inputSubmitBtn:active{
-    transform: scale(0.9);
-    box-shadow: 0 0 5px black;
-
+.popupBtnYes {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: red;
+  color: #ccc;
+  border-radius: 5px;
+  border-style: solid #0B132B;
+}
+.popupBtnNo {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #e7e6f7;
+  border-radius: 5px;
+  border-style: solid #0B132B;
 }
