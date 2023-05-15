@@ -1,31 +1,27 @@
 import React, { useState } from "react";
 import "./App.css";
-import InputFeild from "./components/InputFeild";
-import { ToDo } from "./model";
-import TodoList from "./components/TodoList";
+import InputField from "./components/InputFeild"; // Importing the InputField component
+import { ToDo } from "./model"; // Importing the ToDo type from the model file
+import TodoList from "./components/TodoList"; // Importing the TodoList component
+import { v4 as uuidv4 } from "uuid"; // Importing the v4 function from the uuid library
+
 
 const App: React.FC = () => {
-  // created useState for get todo from InputFeild
+  // Create useState to manage the todo value from the InputField
   const [todo, setTodo] = useState<string>("");
 
-  // contain all of todos, added empty array from model
-  // this is how create an array of type or an interface
+  // Create useState to manage the array of todos
   const [todos, setTodos] = useState<ToDo[]>([]);
 
-  // create handle add function to add todos to setTodos state
-  // we have to pass this function to InputField
+  // Create a function to handle adding a new todo
   const handleAdd = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission behavior
     // avoid page refresh when btn click.
-    // React.FormEvent type get from google after error is pop up.
 
     if (todo) {
-      // first check there is something in the todo using if
-      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
-      // take whatever already inside the todos using ...todos
-      // then add another todo
-      setTodo("");
-      // empty field after todo added
+      // Check if the todo is not empty
+      setTodos([...todos, { id: uuidv4(), todo, isDone: false }]); // Add the new todo to the todos array
+      setTodo(""); // Reset the todo value to an empty string
     }
   };
 
@@ -35,11 +31,13 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <span className="heading">TypeScript ToDo App</span>
-      <InputFeild todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+      {/* Render the InputField component and pass the necessary props */}
+      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
       {/* {todos.map((t) => (
         <li>{t.todo}</li>
       ))} */}
 
+      {/* Render the TodoList component and pass the todos and setTodos props */}
       <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
