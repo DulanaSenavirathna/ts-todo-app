@@ -1,6 +1,6 @@
 .input {
   display: flex;
-  width: 9 0%;
+  width: 95%;
   position: relative;
   align-items: center;
   margin-top: 10px;
@@ -45,24 +45,44 @@
   box-shadow: 0 0 5px black;
 }
 
+.container {
+  display: flex;
+  width: 95%;
+  margin-top: 20px;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 /* todo card styling */
 
 .todos {
   display: flex;
-  justify-content: space-evenly;
-  width: 90%;
-  flex-wrap: wrap;
+  width: 45%;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #40476d;
+  box-shadow: -1px 5px 10px 0px #0b132b;
+}
+
+.todosHeading {
+  font-size: 28px;
+  color: white;
 }
 
 .todosSingle {
-  display: flex;
-  width: 30%;
+  display: flex; 
   border-radius: 5px;
   padding: 20px;
   margin-top: 15px;
   background-color: #a8d0db;
+  transition: 0.2s;
 }
-
+.todosSingle:hover {
+  box-shadow: 0 0 5px #0b132b;
+  transform: scale(1.01);
+}
 .todosSingleText {
   flex: 1;
   padding: 5px;
@@ -84,15 +104,15 @@
   }
   .todos {
     width: 95%;
+    margin-bottom: 10px;
   }
-  .todosSingle {
-    width: 100%;
+  .container {
+    width: 95%;
+    flex-direction: column;
   }
 }
-@media (max-width: 1200px) {
-  .todosSingle {
-    width: 40%;
-  }
+.remove {
+  background-color: #98b06f;
 }
 
 .popup {
@@ -121,12 +141,12 @@
   background-color: red;
   color: #ccc;
   border-radius: 5px;
-  border-style: solid #0B132B;
+  border-style: solid #0b132b;
 }
 .popupBtnNo {
   padding: 10px 20px;
   margin-right: 10px;
   background-color: #e7e6f7;
   border-radius: 5px;
-  border-style: solid #0B132B;
+  border-style: solid #0b132b;
 }

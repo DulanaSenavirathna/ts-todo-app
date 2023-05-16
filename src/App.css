@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #1C2541;
+  background: rgb(11,19,43);
+  background: linear-gradient(0deg, rgba(11,19,43,1) 0%, rgba(28,37,65,1) 60%, rgba(46,69,97,1) 100%);
   font-family: 'Oswald', sans-serif;
 }
 

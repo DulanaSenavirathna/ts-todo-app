@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ToDo } from "../model"; // Importing the ToDo type from a model file
+import { ToDo } from "../model";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import DoneIcon from "@mui/icons-material/Done";
 import "./styles.css";
+import { Draggable } from "react-beautiful-dnd";
 
 interface Props {
+  index: number;
   todo: ToDo; // Prop for a single ToDo item
   todos: ToDo[]; // Prop for the array of all ToDo items
   setTodos: React.Dispatch<React.SetStateAction<ToDo[]>>; // Function to update the ToDo array
 }
 
-const SingleTodo = ({ todo, todos, setTodos }: Props) => {
+const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
   const [edit, setEdit] = useState<boolean>(false); // State to track if the ToDo is in edit mode
   const [editTodo, setEditTodo] = useState<string>(todo.todo); // State to track the edited ToDo text
 
@@ -60,57 +62,67 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
   }, [edit]);
 
   return (
-    <form className="todosSingle" onSubmit={(e) => handleEdit(e, todo.id)}>
-      {edit ? (
-        // Render an input field in edit mode
-        <input
-          ref={inputRef}
-          value={editTodo}
-          onChange={(e) => setEditTodo(e.target.value)}
-          className="todosSingleText"
-        />
-      ) : todo.isDone ? (
-        // Render a strikethrough text if the ToDo is marked as done
-        <s className="todosSingleText"> {todo.todo}</s>
-      ) : (
-        // Render a normal text if the ToDo is not done
-        <span className="todosSingleText"> {todo.todo}</span>
-      )}
-
-      <div>
-        <span
-          className="icon"
-          onClick={() => {
-            // Toggle the edit mode only if it's not already in edit mode and the ToDo is not marked as done
-            if (!edit && !todo.isDone) {
-              setEdit(!edit);
-            }
-          }}
+    <Draggable draggableId={todo.id.toString()} index={index}>
+      {(provided) => (
+        <form
+          className="todosSingle"
+          onSubmit={(e) => handleEdit(e, todo.id)}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
         >
-          <EditIcon />
-        </span>
-        <span className="icon" onClick={() => handleDone(todo.id)}>
-          <DoneIcon />
-        </span>
-        <span className="icon" onClick={() => handleDelete(todo.id)}>
-          <DeleteForeverIcon />
-        </span>
-      </div>
+          {edit ? (
+            // Render an input field in edit mode
+            <input
+              ref={inputRef}
+              value={editTodo}
+              onChange={(e) => setEditTodo(e.target.value)}
+              className="todosSingleText"
+            />
+          ) : todo.isDone ? (
+            // Render a strikethrough text if the ToDo is marked as done
+            <s className="todosSingleText"> {todo.todo}</s>
+          ) : (
+            // Render a normal text if the ToDo is not done
+            <span className="todosSingleText"> {todo.todo}</span>
+          )}
 
-      {isOpen && (
-        // Render a confirmation popup if isOpen is true
-        <div className="popup">
-          <h2>Confirm Delete</h2>
-          <p>Are you sure you want to delete this todo item?</p>
-          <button className="popupBtnYes" onClick={handleConfirmDelete}>
-            Yes
-          </button>
-          <button className="popupBtnNo" onClick={handleCancelDelete}>
-            No
-          </button>
-        </div>
+          <div>
+            <span
+              className="icon"
+              onClick={() => {
+                // Toggle the edit mode only if it's not already in edit mode and the ToDo is not marked as done
+                if (!edit && !todo.isDone) {
+                  setEdit(!edit);
+                }
+              }}
+            >
+              <EditIcon />
+            </span>
+            <span className="icon" onClick={() => handleDone(todo.id)}>
+              <DoneIcon />
+            </span>
+            <span className="icon" onClick={() => handleDelete(todo.id)}>
+              <DeleteForeverIcon />
+            </span>
+          </div>
+
+          {isOpen && (
+            // Render a confirmation popup if isOpen is true
+            <div className="popup">
+              <h2>Confirm Delete</h2>
+              <p>Are you sure you want to delete this todo item?</p>
+              <button className="popupBtnYes" onClick={handleConfirmDelete}>
+                Yes
+              </button>
+              <button className="popupBtnNo" onClick={handleCancelDelete}>
+                No
+              </button>
+            </div>
+          )}
+        </form>
       )}
-    </form>
+    </Draggable>
   );
 };
 

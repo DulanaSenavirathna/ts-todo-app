@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
-import InputField from "./components/InputFeild"; // Importing the InputField component
-import { ToDo } from "./model"; // Importing the ToDo type from the model file
-import TodoList from "./components/TodoList"; // Importing the TodoList component
-import { v4 as uuidv4 } from "uuid"; // Importing the v4 function from the uuid library
-
+import InputField from "./components/InputFeild";
+import { ToDo } from "./model";
+import TodoList from "./components/TodoList";
+import { v4 as uuidv4 } from "uuid";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 
 const App: React.FC = () => {
   // Create useState to manage the todo value from the InputField
@@ -13,9 +13,13 @@ const App: React.FC = () => {
   // Create useState to manage the array of todos
   const [todos, setTodos] = useState<ToDo[]>([]);
 
+  //use state for completed todos
+  const [completedTodos, setCompletedTodos] = useState<ToDo[]>([]);
+
   // Create a function to handle adding a new todo
   const handleAdd = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
+    // Prevent the default form submission behavior
     // avoid page refresh when btn click.
 
     if (todo) {
@@ -25,21 +29,58 @@ const App: React.FC = () => {
     }
   };
 
-  // console.log(todo);
-  // console.log(todos);
+  const onDragEnd = (result: DropResult) => {
+    const { destination, source } = result;
+
+    console.log(result);
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    let add;
+    let active = todos;
+    let complete = completedTodos;
+    // Source Logic
+    if (source.droppableId === "TodosList") {
+      add = active[source.index];
+      active.splice(source.index, 1);
+    } else {
+      add = complete[source.index];
+      complete.splice(source.index, 1);
+    }
+
+    // Destination Logic
+    if (destination.droppableId === "TodosList") {
+      active.splice(destination.index, 0, add);
+    } else {
+      complete.splice(destination.index, 0, add);
+    }
+
+    setCompletedTodos(complete);
+    setTodos(active);
+  };
 
   return (
-    <div className="App">
-      <span className="heading">TypeScript ToDo App</span>
-      {/* Render the InputField component and pass the necessary props */}
-      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
-      {/* {todos.map((t) => (
-        <li>{t.todo}</li>
-      ))} */}
-
-      {/* Render the TodoList component and pass the todos and setTodos props */}
-      <TodoList todos={todos} setTodos={setTodos} />
-    </div>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="App">
+        <span className="heading">TypeScript ToDo App</span>
+        <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
+          completedTodos={completedTodos}
+          setCompletedTodos={setCompletedTodos}
+        />
+      </div>
+    </DragDropContext>
   );
 };
 
