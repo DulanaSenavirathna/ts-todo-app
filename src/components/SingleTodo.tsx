@@ -59,13 +59,13 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
     if (edit) {
       inputRef.current?.focus(); // Focus on the input element when in edit mode
     }
-  }, [edit]);
+  }, [edit]); 
 
   return (
-    <Draggable draggableId={todo.id.toString()} index={index}>
-      {(provided) => (
+    <Draggable draggableId={todo.id} index={index} >
+      {(provided, snapshot) => (
         <form
-          className="todosSingle"
+          className={`todosSingle ${snapshot.isDragging ? "drag" : ""}`}
           onSubmit={(e) => handleEdit(e, todo.id)}
           ref={provided.innerRef}
           {...provided.draggableProps}
@@ -88,6 +88,7 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
           )}
 
           <div>
+            
             <span
               className="icon"
               onClick={() => {
@@ -98,6 +99,7 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
               }}
             >
               <EditIcon />
+              
             </span>
             <span className="icon" onClick={() => handleDone(todo.id)}>
               <DoneIcon />
@@ -120,8 +122,13 @@ const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
               </button>
             </div>
           )}
+          
         </form>
+        
+        
+
       )}
+
     </Draggable>
   );
 };

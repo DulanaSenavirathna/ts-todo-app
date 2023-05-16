@@ -150,3 +150,11 @@
   border-radius: 5px;
   border-style: solid #0b132b;
 }
+
+.dragactive{
+  background-color: #343f7e;
+}
+
+.dragcomplete{
+  background-color: #7db123;
+}
