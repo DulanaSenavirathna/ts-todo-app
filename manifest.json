@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "TS ToDO App",
+  "name": "TS react App by Dulana Senavirathna",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "tsTodoApp.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
